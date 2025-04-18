@@ -1,0 +1,18 @@
+{% extends "payments/base.html" %}
+{% block title %}{{ product.name }} Details{% endblock %}
+{% block content %}
+  <h1>{{ product.name }}</h1>
+  <p>{{ product.description }}</p>
+  <p><strong>Price:</strong> ${{ product.price }}</p>
+  <h2 class="mt-5">Installment Plans</h2>
+  <ul class="list-group">
+    {% for plan in installment_plans %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ plan.number_of_installments }} installments at {{ plan.interest_rate }}% interest
+        <a href="{% url 'make_payment' plan.id %}" class="btn btn-success">
+          Pay ${{ plan.calculate_installment_amount|floatformat:2 }} per installment
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

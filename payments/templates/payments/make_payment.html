@@ -1,0 +1,10 @@
+{% extends "payments/base.html" %}
+{% block title %}Make Payment{% endblock %}
+{% block content %}
+  <h1 class="mb-4">Pay Installment</h1>
+  <p class="lead">Installment Amount: ${{ installment_amount|floatformat:2 }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Confirm Payment</button>
+  </form>
+{% endblock %}
